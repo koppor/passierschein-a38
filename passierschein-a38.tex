@@ -1,0 +1,257 @@
+% !TeX Program = lualatex
+
+\documentclass[a4paper]{article}
+\usepackage[left=2cm,right=2cm,top=1cm,bottom=1cm]{geometry}
+\usepackage{fontspec}
+\usepackage{libertinus}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage{xcolor}
+\colorlet{textgreen}{black!50!green!50!white}
+\colorlet{bggreen}{black!50!green!10!white}
+\colorlet{xgreen}{black!50!green!10!white}
+\colorlet{linegreen}{black!50!green}
+
+\usepackage{pst-barcode}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.geometric}
+
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\arrayrulecolor{linegreen}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\usepackage{calc}
+\usepackage{everypage}
+\usepackage{lastpage}
+\usepackage{multicol}
+
+\def\documentid{P-A38-2k25}
+
+\AddEverypageHook{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [color=textgreen, rotate=90, anchor=north] at ($(current page.west)+(10mm,0)$)
+        {\ttfamily\bfseries Originalpapier nur, wenn dieser Hinweis in Gründruck erscheint.};
+        \node [rotate=90, anchor=north west, align=left] at ($(current page.south west)+(10mm,10mm)$)
+        {%
+            \hspace{1cm}\texttt{\documentid}
+            \\
+            \hspace{1cm}\texttt{Seite \thepage{} von \pageref{LastPage}}
+            \\
+            \psbarcode[transy=0.35,scalex=0.5,scaley=0.5]{\documentid-\thepage}{parse,format=square: version=18x18}{datamatrix}
+        };
+    \end{tikzpicture}%
+    %
+    \def\foldFirst{105mm}%
+    \def\foldSecond{210mm}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node (foldAA) at ($(current page.north west) + (5mm, - \foldFirst)$) {};
+        \node (foldAB) at ($(current page.north west) + (10mm, - \foldFirst)$) {};
+        \node (foldBA) at ($(current page.north west) + (5mm, - \foldSecond)$) {};
+        \node (foldBB) at ($(current page.north west) + (10mm, - \foldSecond)$) {};
+        \node (centerA) at ($(current page.west) + (5mm, 0)$) {};
+        \node (centerB) at ($(current page.west) + (10mm, 0)$) {};
+        \draw[-] (foldAA) -- (foldAB);
+        \draw[-] (foldBA) -- (foldBB);
+        \draw[-] (centerA) -- (centerB);
+    \end{tikzpicture}%
+}
+
+\parindent=0pt
+\pagestyle{empty}
+
+\usepackage[ngerman]{babel}
+
+\newcommand\sectitle[1]{\textbf{\Large\raisebox{0pt}[1.5\height][1.5\depth]{\vphantom{#1}}#1}}
+\newcommand\tftitle[1]{\textbf{#1}}
+\newcommand\tfnote[1]{\textit{#1}}
+\newcommand\X{\begin{tabular}{|>{\columncolor{white}}l|}\hline\raisebox{0pt}[1.5\height][1.5\depth]{\vphantom{Fg}\hspace{-0.29em}\color{xgreen}X\hspace{-0.29em}}\\\hline\end{tabular}}
+\newcommand\digittf{\begin{tabular}{|>{\columncolor{white}}l|}\hline\raisebox{0pt}[1.5\height][1.5\depth]{\vphantom{Fg}}\\\hline\end{tabular}}
+\newcommand\widetf{\begin{tabular}{|>{\columncolor{white}}l|}\hline\raisebox{0pt}[1.5\height][1.5\depth]{\vphantom{Fg}}\hspace*{\linewidth - 1.5em}\\\hline\end{tabular}}
+\newcommand\Xsub[1]{$\underset{#1}{\X}$}
+
+\newcounter{ansnum}
+\newcommand\ans{\refstepcounter{ansnum}\arabic{ansnum}}
+
+\begin{document}%
+\begin{tikzpicture}[remember picture, overlay]
+    \node [rotate=90, anchor=south] at ($(current page.east)+(-15mm,6.75cm)$)
+    {\ttfamily\bfseries\footnotesize Die kleingedruckten Randbemerkungen bitte nicht lesen.};
+    \node [anchor=south west] at ($(current page.south west)+(0,5mm)$)
+    {%
+        \hspace*{1cm + 0.33ex}%
+        \ttfamily%
+        blinry.org/passierschein-a38
+        \textrightarrow{}
+        hans.coffee
+        \cdot{}
+        CC BY-SA 4.0
+        \cdot{}
+        Weg zum Hafen bitte umseitig zur Kenntnis nehmen
+    };
+\end{tikzpicture}%
+Antragsformular für den
+
+\begin{Huge}
+    Passierschein A38
+\end{Huge}
+
+~
+
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \tftitle{Laufende Nummer} \tfnote{(Bitte schätzen)}                                              & nach Rundschreiben B64            \\
+    \digittf\digittf\digittf\digittf\digittf\digittf\digittf\digittf\digittf\digittf\digittf\digittf & der Bundesbehörde für Rautavistik
+\end{tabularx}
+
+\vspace*{3ex}
+
+\hspace*{-1cm}\begin{tabularx}{\linewidth + 1cm}{@{} R{7.5mm} @{\hspace*{2.5mm}}| >{\columncolor{bggreen}}X |@{}}
+    \cmidrule{2-2}
+         & \sectitle{Persönliche Angaben}                                                                \\
+    \ans & \tftitle{Was ist Ihrer Ansicht nach die ideale Anzahl von Schafen?}                           \\
+         & \tfnote{Bitte beachten Sie, dass Ziegen grundsätzlich keine Schafe sind.}                     \\
+         & \digittf\digittf\digittf\digittf                                                              \\
+         &                                                                                               \\
+    \ans & \tftitle{Beschreiben Sie -- in vier Wörtern oder weniger -- Ihre Meinung zu Plattentektonik.} \\
+         & \widetf                                                                                       \\
+         &                                                                                               \\
+    \ans & \tftitle{Nennen Sie eine Ihrem Charakter entsprechende Salatsorte.}                           \\
+         & \widetf                                                                                       \\
+         &                                                                                               \\
+    \ans & \tftitle{Können Sie fliegen?}                                                                 \\
+         & \X{} Ja \qquad \X{} Momentan nicht.                                                           \\
+         &                                                                                               \\
+    \ans & \tftitle{Wie flexibel sind Ihre Zehen?}                                                       \\
+         & Mäßig flexibel \Xsub{1} \Xsub{2} \Xsub{3} \Xsub{4} \Xsub{5} Sehr flexibel                     \\
+         &                                                                                               \\
+    \cmidrule{2-2}
+         & \sectitle{Gesetzliche Vorschriften}                                                           \\
+    \ans & \tftitle{Führen Sie Waffen bei sich?}                                                         \\
+         & \X{} Schere \qquad \X{} Stein \qquad \X{} Papier                                              \\
+         &                                                                                               \\
+    \ans & \tftitle{Summen Sie die ersten vier Noten Ihres Lieblingsliedes.}                             \\
+         & \X{} Mhmmm-mmhhh hmm hmmmmmm                                                                  \\
+         & \X{} Wupdup dup dup                                                                           \\
+         & \X{} Drrrrnngggggggg krtz-krtz-krtz                                                           \\
+         & \X{} Aaaahhh na-na-naaaaaa                                                                    \\
+         &                                                                                               \\
+    \ans & \tftitle{Bitte kreuzen Sie dieses Feld an:}                                                   \\
+         & \X{} Nein!                                                                                    \\
+         &                                                                                               \\
+    \ans & \tftitle{Haben Sie in den letzten 14 Monaten:}                                                \\
+         & \tfnote{Nur Einfachantwort möglich.}                                                          \\
+         & \X{} bereits eine Quellenbeihilfeerklärung abgegeben                                          \\
+         & \X{} doppelte Substanzkennzahlen in Anspruch genommen                                         \\
+         & \X{} (auch zeitweise) die Interessensverordnungen gelesen                                     \\
+         & \X{} einen Passierschein A38 beantragt                                                        \\
+         &                                                                                               \\
+    \ans & \tftitle{Die Anzahl der angekreuzten Felder auf diesem Formular ist:}                         \\
+         & \X{} gerade                                                                                   \\
+         & \X{} ungerade                                                                                 \\
+         &                                                                                               \\
+    \cmidrule{2-2}
+\end{tabularx}
+
+\begin{multicols}{3}
+    \tftitle{Hinweise}\\
+    \begin{footnotesize}
+        Dieser Antrag wird maschinell eingelesen und ist auch ohne Ihre Unterschrift gültig.
+
+        Mit Berühren dieses Formulars stimmen Sie der Verarbeitung Ihrer DNA zu.
+
+        Eine Braille-Version dieses Formulars senden wir Ihnen auf Wunsch gern als PDF zu.
+    \end{footnotesize}
+
+    \vspace*{2.5ex}\tftitle{Freifeld für zusätzliche Entropie:}
+    \begin{tabularx}{\linewidth}{|Y|}
+        \midrule
+        \\
+        \tfnote{(\ans{} Bei Bedarf bekritzeln.)} \\
+        \\
+        \midrule
+    \end{tabularx}
+
+    \columnbreak
+
+    \tftitle{Bitte fügen Sie folgende Anlagen bei:}
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+        \item Blaues Formular von Schalter I.
+        \item Rosa Formular von Schalter XII, Stiege B, Korridor J.
+        \item Ausgefülltes Antragsformular für den Passierschein A38.
+    \end{itemize}
+
+    \begin{tabularx}{\linewidth}{@{}lX@{}}
+        \ans{} \tftitle{Nasenabdruck}
+         &
+        \tikz \draw[dashed,linegreen]
+        (0,0) to[out=0, in=-90]
+        (0.66,0.33) to[out=90, in=0]
+        (0,1.5) to[out=180,in=90]
+        (-0.66,0.33) to[out=-90,in=180]
+        (0,0);
+    \end{tabularx}
+
+    \columnbreak
+
+    \begin{itemize}[noitemsep]
+        \item[\ans{} \X] Ich verzichte ausdrücklich auf die Entbindung von der Ausfüllungspflicht.
+        \item[\ans{} \X] Ich ziehe meinen Antrag zurück. \tfnote{(Pflichtfeld)}
+        \item[\ans{} \X] Batman-Regelung?
+            \\[4ex]
+        \item[\ans{} \phantom{\X}] \dotfill\\
+            Unterwäsche
+            \smash{
+                \begin{tikzpicture}[remember picture, overlay]
+                    \node [
+                        draw,
+                        dashed,
+                        linegreen,
+                        ellipse,
+                        align=center,
+                        minimum width=6cm,
+                        minimum height=3cm,
+                        inner sep=0pt,
+                        rotate=90
+                    ]
+                    at ($(current page.east)+(5mm,-11cm)$) {
+                        \color{black} \ans{} \\
+                        \color{black} Hier abbeißen.
+                        \\
+                        \\
+                        \\
+                        \\
+                        \\
+                        \\
+                    };
+                \end{tikzpicture}
+            }
+    \end{itemize}%
+\end{multicols}%
+\clearpage%
+
+Der Weg zum Hafen kann standortabhängig unterschiedlich sein.
+In der Regel befindet sich der Hafen unterhalb der Stadt -- immer da wo Wasser ist.
+Beachten Sie die örtlichen Aushänge oder fragen Sie das Hafenpersonal.
+
+\vfill
+\begin{center}
+    \tfnote{(Diese Seite wurde unabsichtlich freigelassen)}
+\end{center}
+\vfill
+\vfill
+\vfill
+\vfill
+
+\end{document}
