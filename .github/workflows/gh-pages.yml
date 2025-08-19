@@ -20,8 +20,7 @@ jobs:
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
         with:
-          packages: >
-            package_file: tl_packages
+          package_file: tl_packages
       - run: make passierschein-a38.pdf
       - name: Prepare public/
         run: |
