@@ -4,12 +4,10 @@
 [![Static Badge](https://img.shields.io/badge/look-federal-000?logo=europeanunion)](https://de.wikipedia.org/wiki/Schland)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-
 Dies ist mein Versuch, den großartigen [Passierschein A38 von blinry](https://blinry.org/passierschein-a38/) in LaTeX im Stil von deutschen Amtsdokumenten nachzubauen.
 Die Inhalte der Vorderseite sind mit minimalen Anpassungen wörtlich übernommen.
 
 <img src="passierschein-a38-0.png" width=49% /> <img src="passierschein-a38-1.png" width=49% />
-
 
 ## PDF erzeugen
 
@@ -22,6 +20,7 @@ make passierschein-a38.pdf
 latexmk -cd -f -lualatex -interaction=nonstopmode -synctex=1 --output-directory=__LaTeX-build.nosync -latexoption=--shell-escape passierschein-a38.tex
 ```
 
+Aktueller Stand: <https://Kamik423.github.io/passierschein-a38/passierschein-a38.pdf>.
 
 ## Lizenz
 
